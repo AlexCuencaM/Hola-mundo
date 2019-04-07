@@ -1,39 +1,42 @@
-class Greeter {
-    element: HTMLElement;
-    span: HTMLElement;
-    timerToken: number;
+namespace Model
+{
+    export class Persona{
+        private nombre: string;
+        private edad: Number;
+    
+        constructor(nombre:string, edad: Number)
+        {
+            this.setNombre(nombre);
+            this.setEdad(edad);
+        }
+    
+        setNombre(nombre:string)
+        {
+            this.nombre = nombre;
+        }
+        setEdad(edad: Number)
+        {
+            this.edad = edad;
+        }
+    
+        getNombre()
+        {
+            return this.nombre;
+        }
+        getEdad()
+        {
+            return this.edad;
+        }
+        saludo()
+        {
+            let body = document.getElementsByTagName("body")[0];
+            var div = document.createElement("div");
+            var p = document.createElement("p");
+            p.innerText = "Mi nombre es: " + this.getNombre() + 
+            " Mi edad es: " + this.getEdad();
+            div.appendChild(p);
+            body.appendChild(div);
+        }
+    }
+}
 
-    constructor (element: HTMLElement) {
-    this.element = element;
-    this.element.innerText += "La hora es: ";
-    this.setSpan('span');
-    this.span.innerText = this.initTiempo();
-    
-    }
-
-    setSpan(span: string):void{
-        this.span = document.createElement(span);
-        this.element.appendChild(this.span);
-    }
-    initTiempo():string
-    {
-        var date = new Date();
-        this.span.innerText = date.getHours() + ":" + date.getMinutes() + ":" +
-        date.getSeconds();
-        return this.span.innerText;
-    }
-    start() {
-    this.timerToken = setInterval(() => this.span.innerText = this.initTiempo(), 1000);
-    }
-    
-    stop() {
-    clearTimeout(this.timerToken);
-    }
-    
-    }
-    
-    window.onload = () => {
-    var el = document.getElementById('content');
-    var greeter = new Greeter(el);
-    greeter.start();
-    }; 
