@@ -27,7 +27,7 @@ namespace Model
         }
         start() {
         this.timerToken = setInterval(() => this.span.innerText = this.initTiempo(), 1000);
-        this.person.saludo();
+        this.person.crearElementos();
         }
         
         stop() {

@@ -17,14 +17,17 @@ var Model;
         Persona.prototype.getEdad = function () {
             return this.edad;
         };
-        Persona.prototype.saludo = function () {
+        Persona.prototype.crearElementos = function () {
             var body = document.getElementsByTagName("body")[0];
             var div = document.createElement("div");
+            div.appendChild(this.saludo());
+            body.appendChild(div);
+        };
+        Persona.prototype.saludo = function () {
             var p = document.createElement("p");
             p.innerText = "Mi nombre es: " + this.getNombre() +
-                " Mi edad es: " + this.getEdad();
-            div.appendChild(p);
-            body.appendChild(div);
+                "\nMi edad es: " + this.getEdad();
+            return p;
         };
         return Persona;
     }());
@@ -53,7 +56,7 @@ var Model;
         Greeter.prototype.start = function () {
             var _this = this;
             this.timerToken = setInterval(function () { return _this.span.innerText = _this.initTiempo(); }, 1000);
-            this.person.saludo();
+            this.person.crearElementos();
         };
         Greeter.prototype.stop = function () {
             clearTimeout(this.timerToken);

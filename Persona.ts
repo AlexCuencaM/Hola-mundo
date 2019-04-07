@@ -27,15 +27,19 @@ namespace Model
         {
             return this.edad;
         }
-        saludo()
+        crearElementos()
         {
             let body = document.getElementsByTagName("body")[0];
-            var div = document.createElement("div");
-            var p = document.createElement("p");
-            p.innerText = "Mi nombre es: " + this.getNombre() + 
-            " Mi edad es: " + this.getEdad();
-            div.appendChild(p);
+            var div = document.createElement("div");            
+            div.appendChild(this.saludo());
             body.appendChild(div);
+        }
+        saludo()
+        {
+            let p = document.createElement("p");
+            p.innerText = "Mi nombre es: " + this.getNombre() +
+            "\nMi edad es: " + this.getEdad();  
+            return p;          
         }
     }
 }
